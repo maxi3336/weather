@@ -1,11 +1,12 @@
 // Need to use the React-specific entry point to allow generating React hooks
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { IWeatherQuery } from './types'
+import { Languages } from './weatherSlice'
 
 interface QueryParams {
   key: string
   city: string
-  lang?: string
+  lang?: Languages
 }
 
 export const weatherApi = createApi({

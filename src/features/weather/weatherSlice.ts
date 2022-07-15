@@ -1,13 +1,21 @@
+/* eslint-disable no-unused-vars */
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../../app/store'
 
+export enum Languages {
+  ru = 'ru',
+  en = 'en'
+}
+
 interface WeatherState {
   key: string
+  lang: Languages
 }
 
 const initialState: WeatherState = {
-  key: localStorage.getItem('key') ?? ''
+  key: localStorage.getItem('key') ?? '',
+  lang: (localStorage.getItem('lang') as Languages) ?? 'ru'
 }
 
 export const weatherSlice = createSlice({
@@ -21,11 +29,20 @@ export const weatherSlice = createSlice({
     removeKey: (state) => {
       state.key = ''
       localStorage.removeItem('key')
+    },
+    toggleLanguage: (state) => {
+      if (state.lang === Languages.en) {
+        state.lang = Languages.ru
+        localStorage.setItem('lang', Languages.ru)
+      } else {
+        state.lang = Languages.en
+        localStorage.setItem('lang', Languages.en)
+      }
     }
   }
 })
 
-export const { addKey, removeKey } = weatherSlice.actions
+export const { addKey, removeKey, toggleLanguage } = weatherSlice.actions
 
 export const selectKey = (state: RootState) => state.weather.key
 

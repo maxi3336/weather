@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import { CardTitle } from '..'
+import { useLocale } from '../../../hooks/useLocale'
 import { Button } from '../../ui/Button'
 
 export const FeelsInfo: FC<{ feelC: number; feelF: number }> = ({
@@ -7,10 +8,11 @@ export const FeelsInfo: FC<{ feelC: number; feelF: number }> = ({
   feelF
 }) => {
   const [isCelsius, setIsCelsius] = useState(true)
+  const locale = useLocale()
 
   return (
     <div className="flex flex-col gap-2 h-full relative">
-      <CardTitle>Feels like:</CardTitle>
+      <CardTitle>{`${locale.feelsLike}:`}</CardTitle>
       <div className="flex-1 flex items-center gap-2 text-8xl font-thin">
         <span className="tracking-wide">{isCelsius ? feelC : feelF}</span>
         {isCelsius ? '°C' : '°F'}

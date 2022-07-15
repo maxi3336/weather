@@ -7,6 +7,7 @@ import { Weather } from '../components/Weather'
 import { useLazyGetCurrentWeatherQuery } from '../features/weather/weatherAPI'
 import { removeKey } from '../features/weather/weatherSlice'
 import { useDebounce } from '../hooks/useDebounce'
+import { useLanguage } from '../hooks/useLanguage'
 
 const Loader = () => (
   <div className="h-full w-full flex items-center justify-center">
@@ -15,6 +16,7 @@ const Loader = () => (
 )
 
 const MainPage = () => {
+  const { lang, toggle } = useLanguage()
   const key = useAppSelector((state) => state.weather.key)
   const [fetchWeather, { data, isLoading }] = useLazyGetCurrentWeatherQuery()
 
@@ -29,14 +31,15 @@ const MainPage = () => {
     if (key && city) {
       fetchWeather({
         key,
-        city
+        city,
+        lang
       }).then(({ isSuccess }) => {
         if (isSuccess) {
           localStorage.setItem('draft:city', city)
         }
       })
     }
-  }, [key, city])
+  }, [key, city, lang])
 
   const clearKeyHandler = () => {
     dispatch(removeKey())
@@ -44,7 +47,7 @@ const MainPage = () => {
 
   return (
     <>
-      <div className="w-9/12 h-full py-24 flex flex-col items-center">
+      <div className="w-6/12 h-full py-24 flex flex-col items-center">
         <Input
           placeholder="Type city here..."
           type="text"
@@ -59,6 +62,10 @@ const MainPage = () => {
           <Weather data={data} value={cityName} />
         )}
       </div>
+
+      <Button className="absolute top-4 left-8" onClick={toggle}>
+        {lang}
+      </Button>
 
       <Button className="absolute top-4 right-8" onClick={clearKeyHandler}>
         Exit
