@@ -20,7 +20,9 @@ const MainPage = () => {
 
   const dispatch = useAppDispatch()
 
-  const [cityName, setCityName] = useState('')
+  const [cityName, setCityName] = useState(
+    localStorage.getItem('draft:city') ?? ''
+  )
   const { value: city, loading: typing } = useDebounce(cityName, 500)
 
   useEffect(() => {
@@ -28,11 +30,13 @@ const MainPage = () => {
       fetchWeather({
         key,
         city
+      }).then(({ isSuccess }) => {
+        if (isSuccess) {
+          localStorage.setItem('draft:city', city)
+        }
       })
     }
   }, [key, city])
-
-  console.log(data)
 
   const clearKeyHandler = () => {
     dispatch(removeKey())
