@@ -34,6 +34,7 @@ interface LocalesList {
     apiKeySuccess: string
   }
   main: {
+    search: string
     empty: string
     reenter: string
   }
@@ -78,6 +79,7 @@ export const locales: ILocale = {
       apiKeySuccess: 'API Key успешно добавлен'
     },
     main: {
+      search: 'Введите название города здесь...',
       empty: 'Данных по погоде не найдено',
       reenter: 'Попробуйте ввести другой город'
     }
@@ -115,6 +117,7 @@ export const locales: ILocale = {
       apiKeySuccess: 'API key successfully added'
     },
     main: {
+      search: 'Type city name here...',
       empty: 'No weather data',
       reenter: 'Try to enter other city'
     }

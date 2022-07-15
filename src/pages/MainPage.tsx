@@ -51,7 +51,7 @@ const MainPage = () => {
     <>
       <div className="w-6/12 h-full py-24 flex flex-col items-center">
         <Input
-          placeholder="Type city here..."
+          placeholder={locale.main.search}
           type="text"
           value={cityName}
           onChange={({ target: { value } }) => setCityName(value)}
