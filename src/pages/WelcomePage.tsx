@@ -5,10 +5,11 @@ import { Button } from '../components/ui/Button'
 import { Input } from '../components/ui/Input'
 import { useLazyTestAccessQuery } from '../features/weather/weatherAPI'
 import { addKey } from '../features/weather/weatherSlice'
+import { useLocale } from '../hooks/useLocale'
 
 const WelcomePage = () => {
+  const locale = useLocale()
   const [testFetch] = useLazyTestAccessQuery()
-
   const [newKey, setNewKey] = useState('')
 
   const dispatch = useAppDispatch()
@@ -22,11 +23,11 @@ const WelcomePage = () => {
 
     testFetch(newKey).then(({ isError }) => {
       if (isError) {
-        toast.error('Not valid API key!')
+        toast.error(locale.toast.apiKeyError)
         return
       }
 
-      toast.success('API key successfully added!')
+      toast.success(locale.toast.apiKeySuccess)
       dispatch(addKey(newKey))
     })
   }
@@ -34,7 +35,7 @@ const WelcomePage = () => {
   return (
     <div className="flex flex-col justify-center gap-4 text-center">
       <p>
-        Please go to{' '}
+        {locale.welcome.siteFirstPart}{' '}
         <a
           className="underline hover:opacity-50"
           href="https://www.weatherapi.com/"
@@ -42,17 +43,17 @@ const WelcomePage = () => {
         >
           WeatherAPI
         </a>{' '}
-        website and past your API Key
+        {locale.welcome.siteSecondPart}
       </p>
 
       <p>
-        You can find API Key on your{' '}
+        {locale.welcome.profile}{' '}
         <a
           className="underline hover:opacity-50"
           href="https://www.weatherapi.com/my/"
           target="__blank"
         >
-          profile page
+          {locale.welcome.profileLink}
         </a>
       </p>
 
@@ -61,12 +62,10 @@ const WelcomePage = () => {
           type="text"
           value={newKey}
           onChange={({ target: { value } }) => setNewKey(value)}
-          placeholder="API Key"
-          style={{ flex: 1 }}
+          placeholder={locale.welcome.placeholder}
+          className="flex-1"
         />
-        <Button type="submit" style={{ width: 100 }}>
-          Add
-        </Button>
+        <Button type="submit">{locale.welcome.btn}</Button>
       </form>
     </div>
   )

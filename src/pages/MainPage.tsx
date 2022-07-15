@@ -18,7 +18,7 @@ const Loader = () => (
 
 const MainPage = () => {
   const locale = useLocale()
-  const { lang, toggle } = useLanguage()
+  const { lang } = useLanguage()
   const key = useAppSelector((state) => state.weather.key)
   const [fetchWeather, { data, isLoading }] = useLazyGetCurrentWeatherQuery()
 
@@ -64,10 +64,6 @@ const MainPage = () => {
           <Weather data={data} value={cityName} />
         )}
       </div>
-
-      <Button className="absolute top-4 left-8" onClick={toggle}>
-        {lang}
-      </Button>
 
       <Button className="absolute top-4 right-8" onClick={clearKeyHandler}>
         {locale.exit}

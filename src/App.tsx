@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { useAppDispatch, useAppSelector } from './app/hooks'
+import { Button } from './components/ui/Button'
 import { LoadingIndicator } from './components/ui/LoadingIndicator'
 import { useLazyTestAccessQuery } from './features/weather/weatherAPI'
 import { removeKey } from './features/weather/weatherSlice'
+import { useLanguage } from './hooks/useLanguage'
 import MainPage from './pages/MainPage'
 import WelcomePage from './pages/WelcomePage'
 
@@ -15,6 +17,8 @@ const App = () => {
 
   const [testFetch] = useLazyTestAccessQuery()
   const [loading, setLoading] = useState(false)
+
+  const { lang, toggle } = useLanguage()
 
   const dispatch = useAppDispatch()
 
@@ -45,6 +49,10 @@ const App = () => {
   return (
     <div className={wrapperClassName}>
       {key ? <MainPage /> : <WelcomePage />}
+
+      <Button className="absolute top-4 left-8" onClick={toggle}>
+        {lang}
+      </Button>
 
       <Toaster
         position="top-center"

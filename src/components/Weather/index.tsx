@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { IWeatherQuery } from '../../features/weather/types'
+import { useLocale } from '../../hooks/useLocale'
 import { ConditionInfo } from './Cards/ConditionInfo'
 import { FeelsInfo } from './Cards/FeelsInfo'
 import { LocationInfo } from './Cards/LocationInfo'
@@ -31,11 +32,13 @@ export const Weather: FC<{ data?: IWeatherQuery; value: string }> = ({
   data,
   value
 }) => {
+  const locale = useLocale()
+
   if (!data) {
     return (
       <div className="h-full w-full flex flex-col items-center justify-center text-gray-500">
-        <p>No weather data</p>
-        {value && <p>Try to enter other city</p>}
+        <p>{locale.main.empty}</p>
+        {value && <p>{locale.main.reenter}</p>}
       </div>
     )
   }

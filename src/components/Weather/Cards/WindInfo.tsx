@@ -19,25 +19,25 @@ export const WindInfo: FC<{
 
   return (
     <div className="flex flex-col gap-4 h-full">
-      <CardTitle>{`${locale.windInfo}:`}</CardTitle>
+      <CardTitle>{`${locale.wind.title}:`}</CardTitle>
       <div className="flex flex-col justify-around h-full">
         <CardInfoRow
-          title={locale.direction}
+          title={locale.wind.direction}
           info={humanDirection[dir as keyof typeof humanDirection] ?? dir}
         />
         <CardInfoRow
           className="grid-cols-[7rem_1fr]"
-          title={locale.directionDegrees}
+          title={locale.wind.directionDegrees}
           info={`${degree}°`}
         />
         <CardInfoRow
           className="grid-cols-[7rem_1fr]"
-          title={locale.speedKm}
+          title={locale.wind.speedKm}
           info={`${kph} ${locale.kph}`}
         />
         <CardInfoRow
           className="grid-cols-[7rem_1fr]"
-          title={locale.speedMiles}
+          title={locale.wind.speedMiles}
           info={`${mph} ${locale.mph}`}
         />
       </div>

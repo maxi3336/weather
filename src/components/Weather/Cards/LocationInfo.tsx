@@ -10,12 +10,15 @@ export const LocationInfo: FC<{ location: Location }> = ({
 
   return (
     <div className="flex flex-col justify-between h-full">
-      <CardTitle>{`${locale.location}:`}</CardTitle>
+      <CardTitle>{`${locale.location.title}:`}</CardTitle>
       <div className="h-full flex flex-col justify-around mt-4">
-        <CardInfoRow title={locale.country} info={country} />
-        <CardInfoRow title={locale.region} info={region} />
-        <CardInfoRow title={locale.name} info={name} />
-        <CardInfoRow title={locale.localTime} info={localtime.split(' ')[1]} />
+        <CardInfoRow title={locale.location.country} info={country} />
+        <CardInfoRow title={locale.location.region} info={region} />
+        <CardInfoRow title={locale.location.name} info={name} />
+        <CardInfoRow
+          title={locale.location.localTime}
+          info={localtime.split(' ')[1]}
+        />
       </div>
     </div>
   )
