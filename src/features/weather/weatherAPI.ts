@@ -12,7 +12,10 @@ interface QueryParams {
 export const weatherApi = createApi({
   reducerPath: 'weatherApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: ' http://api.weatherapi.com/v1'
+    baseUrl: ' http://api.weatherapi.com/v1',
+    headers: {
+      'content-type': 'application/json'
+    }
   }),
   endpoints: (builder) => ({
     testAccess: builder.query<IWeatherQuery, string>({
