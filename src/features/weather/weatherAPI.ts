@@ -14,6 +14,15 @@ export const weatherApi = createApi({
     baseUrl: ' http://api.weatherapi.com/v1'
   }),
   endpoints: (builder) => ({
+    testAccess: builder.query<IWeatherQuery, string>({
+      query: (key) => ({
+        url: '/current.json',
+        params: {
+          key,
+          q: 'Paris'
+        }
+      })
+    }),
     getCurrentWeather: builder.query<IWeatherQuery, QueryParams>({
       query: ({ key, city, lang = 'ru' }) => ({
         url: '/current.json',
@@ -27,4 +36,5 @@ export const weatherApi = createApi({
   })
 })
 
-export const { useLazyGetCurrentWeatherQuery } = weatherApi
+export const { useLazyGetCurrentWeatherQuery, useLazyTestAccessQuery } =
+  weatherApi
