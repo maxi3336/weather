@@ -14,7 +14,9 @@ interface LocalesList {
   direction: string
   directionDegrees: string
   speedKm: string
+  kph: string
   speedMiles: string
+  mph: string
 }
 
 type ILocale = {
@@ -36,7 +38,9 @@ export const locales: ILocale = {
     direction: 'Направление',
     directionDegrees: 'Направление (градусы)',
     speedKm: 'Скорость (километры)',
-    speedMiles: 'Скорость (мили)'
+    kph: 'км/ч',
+    speedMiles: 'Скорость (мили)',
+    mph: 'м/ч'
   },
   [Languages.en]: {
     exit: 'Exit',
@@ -51,7 +55,9 @@ export const locales: ILocale = {
     direction: 'Direction',
     directionDegrees: 'Direction (degrees)',
     speedKm: 'Speed (kilometers)',
-    speedMiles: 'Speed (miles)'
+    kph: 'km/h',
+    speedMiles: 'Speed (miles)',
+    mph: 'm/h'
   }
 }
 

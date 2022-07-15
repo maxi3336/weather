@@ -33,12 +33,12 @@ export const WindInfo: FC<{
         <CardInfoRow
           className="grid-cols-[7rem_1fr]"
           title={locale.speedKm}
-          info={`${kph} km/h`}
+          info={`${kph} ${locale.kph}`}
         />
         <CardInfoRow
           className="grid-cols-[7rem_1fr]"
           title={locale.speedMiles}
-          info={`${mph} m/h`}
+          info={`${mph} ${locale.mph}`}
         />
       </div>
     </div>

@@ -8,6 +8,7 @@ import { useLazyGetCurrentWeatherQuery } from '../features/weather/weatherAPI'
 import { removeKey } from '../features/weather/weatherSlice'
 import { useDebounce } from '../hooks/useDebounce'
 import { useLanguage } from '../hooks/useLanguage'
+import { useLocale } from '../hooks/useLocale'
 
 const Loader = () => (
   <div className="h-full w-full flex items-center justify-center">
@@ -16,6 +17,7 @@ const Loader = () => (
 )
 
 const MainPage = () => {
+  const locale = useLocale()
   const { lang, toggle } = useLanguage()
   const key = useAppSelector((state) => state.weather.key)
   const [fetchWeather, { data, isLoading }] = useLazyGetCurrentWeatherQuery()
@@ -68,7 +70,7 @@ const MainPage = () => {
       </Button>
 
       <Button className="absolute top-4 right-8" onClick={clearKeyHandler}>
-        Exit
+        {locale.exit}
       </Button>
     </>
   )
